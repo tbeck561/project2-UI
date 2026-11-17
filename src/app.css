@@ -1,0 +1,162 @@
+/* Coolmath Games palette (sampled from the live site), with secondary text and borders
+   brightened so everything passes WCAG AA. Their #5A6776 grey on navy is ~3:1; ours is 9:1+. */
+:root {
+	--bg: #060d19; /* page */
+	--bar: #131b29; /* header, footer, chips */
+	--panel: #1b283b; /* cards and panels */
+	--raised: #243450; /* buttons, hover */
+	--line: #33476a; /* borders */
+	--text: #ffffff; /* 18.9:1 on --bg */
+	--text-soft: #c3cedd; /* 11.6:1 on --bg, 9.3:1 on --panel */
+	--yellow: #ffe420; /* Coolmath yellow: primary actions */
+	--yellow-hover: #fff06b;
+	--on-yellow: #060d19; /* 15.6:1 on yellow */
+	--blue: #29bffd; /* links: 9.6:1 on --bg */
+	--heart: #ff5c8a;
+	--focus: #29bffd;
+	--display: 'Fredoka', 'Trebuchet MS', sans-serif;
+	--body: 'Atkinson Hyperlegible', 'Segoe UI', Arial, sans-serif;
+	--radius: 14px;
+	color-scheme: dark;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	-webkit-text-size-adjust: 100%;
+	background: var(--bg);
+}
+
+body {
+	margin: 0;
+	background-color: var(--bg);
+	/* faint graph paper: the one nod to "math" */
+	background-image: linear-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px),
+		linear-gradient(90deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
+	background-size: 28px 28px;
+	color: var(--text);
+	font: 400 1.0625rem/1.5 var(--body);
+}
+
+h1,
+h2,
+h3 {
+	font-family: var(--display);
+	font-weight: 600;
+	line-height: 1.15;
+	letter-spacing: -0.01em;
+}
+
+a {
+	color: var(--blue);
+}
+
+:focus-visible {
+	outline: 3px solid var(--focus);
+	outline-offset: 3px;
+	border-radius: 6px;
+}
+
+.wrap {
+	width: min(1180px, 100% - 32px);
+	margin-inline: auto;
+}
+
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	white-space: nowrap;
+}
+
+/* Buttons always pair an icon with words */
+.btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	min-height: 44px;
+	padding: 8px 16px;
+	border: 1px solid var(--line);
+	border-radius: 10px;
+	background: var(--raised);
+	color: var(--text);
+	font: 700 1rem/1 var(--body);
+	text-decoration: none;
+	cursor: pointer;
+	transition: background 0.12s, transform 0.08s;
+	white-space: nowrap;
+}
+.btn:hover {
+	background: #2f4366;
+}
+.btn:active {
+	transform: translateY(1px);
+}
+.btn.primary {
+	background: var(--yellow);
+	border-color: var(--yellow);
+	color: var(--on-yellow);
+}
+.btn.primary:hover {
+	background: var(--yellow-hover);
+}
+.btn.ghost {
+	border-color: transparent;
+	background: transparent;
+}
+.btn.ghost:hover,
+.btn.ghost[aria-expanded='true'],
+.btn.ghost[aria-current='page'] {
+	background: var(--raised);
+	border-color: var(--line);
+}
+.btn.big {
+	min-height: 54px;
+	padding: 12px 24px;
+	font-size: 1.1rem;
+}
+
+.section-head {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 12px;
+	flex-wrap: wrap;
+	margin: 48px 0 16px;
+}
+.section-head h2 {
+	font-size: 1.75rem;
+	margin: 0;
+}
+.section-head p {
+	margin: 2px 0 0;
+	color: var(--text-soft);
+}
+.section-head a {
+	font-weight: 700;
+}
+
+/* Game grids wrap instead of running off the right edge */
+.game-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+	gap: 18px;
+}
+@media (max-width: 520px) {
+	.game-grid {
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	* {
+		transition: none !important;
+		animation: none !important;
+	}
+}
